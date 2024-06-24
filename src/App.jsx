@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Carousel } from './Carousel';
 
 const data = [
-  { src: "/src/images/quiz/1.png", alt: "Image 1", answerSrc: "/src/images/answers/1.png" },
+  { src: "/src/images/quiz/1.png", alt: "Image 20", answerSrc: "/src/images/answers/1.png" },
   { src: "/src/images/quiz/2.png", alt: "Image 2", answerSrc: "/src/images/answers/2.png" },
   { src: "/src/images/quiz/3.png", alt: "Image 3", answerSrc: "/src/images/answers/3.png" },
   { src: "/src/images/quiz/4.png", alt: "Image 4", answerSrc: "/src/images/answers/4.png" },

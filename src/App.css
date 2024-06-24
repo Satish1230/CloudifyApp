@@ -1,0 +1,87 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bg-image {
+  background-image: url('./images/Background.png');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.513), rgba(0, 0, 0, 0.539)), url('./images/Background.png');
+  animation: zoomInOut 10s infinite;
+}
+
+.bg-image.no-animation {
+  animation: none;
+}
+
+@keyframes zoomInOut {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.content {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  background-color: #f4f132;
+  border: none;
+  color: rgb(2, 2, 2);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.carousel-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}

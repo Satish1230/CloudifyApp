@@ -1,0 +1,21 @@
+/* Navbar.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    /* Change from center to flex-start */
+    align-items: center;
+    /* Ensure items are aligned in the center vertically */
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    /* Add some left margin to align nicely */
+}

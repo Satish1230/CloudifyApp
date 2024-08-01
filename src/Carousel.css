@@ -1,141 +1,146 @@
 .carousel-container {
     position: relative;
-    /* Position relative to allow absolute positioning of arrows */
     width: 600px;
-    /* Set the width of the carousel */
     height: 400px;
-    /* Set the height of the carousel */
     margin: auto;
-    /* Center the carousel */
+    background: transparent;
 }
 
 .carousel {
     position: relative;
-    /* Position relative for absolute positioning of slides */
     display: flex;
-    /* Use flexbox to align items */
     justify-content: center;
-    /* Center the content */
     align-items: center;
-    /* Center the content vertically */
     width: 100%;
-    /* Full width of the container */
     height: 100%;
-    /* Full height of the container */
     overflow: hidden;
-    /* Hide overflow to show only the current slide */
 }
 
 .slide {
     border-radius: 0.5rem;
-    /* Rounded corners for slides */
     box-shadow: 0px 0px 7px #666;
-    /* Shadow for slides */
     width: 100%;
-    /* Full width of the carousel */
     height: 100%;
-    /* Full height of the carousel */
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    /* Smooth transition for slide change */
     opacity: 1;
-    /* Fully visible slide */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: slide-in 0.5s ease;
 }
 
 .slide-hidden {
     display: none;
-    /* Hide non-active slides */
     opacity: 0;
-    /* Fully transparent slide */
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes flip-in {
+    from {
+        transform: rotateY(180deg);
+    }
+
+    to {
+        transform: rotateY(0);
+    }
+}
+
+.flipped {
+    animation: flip-in 0.5s ease;
 }
 
 .arrow {
     position: absolute;
-    /* Position arrows absolutely */
     top: 50%;
-    /* Center vertically */
     transform: translateY(-50%);
-    /* Adjust for accurate centering */
     filter: drop-shadow(0px 0px 5px #555);
-    /* Add shadow to arrows */
     width: 2rem;
-    /* Set arrow width */
     height: 2rem;
-    /* Set arrow height */
-    /* color: white; */
     color: #efef12;
-    /* Set arrow color */
 }
 
 .arrow:hover {
     cursor: pointer;
-    /* Change cursor to pointer on hover */
 }
 
 .arrow-left {
     left: -3rem;
-    border: yellow;
-    /* Position left arrow outside the image container */
+}
+
+.arrow-left.inactive {
+    opacity: 0.5;
+    cursor: default;
 }
 
 .arrow-right {
     right: -3rem;
-    /* Position right arrow outside the image container */
 }
 
 .indicators {
     position: absolute;
-    top: 40px;
-    /* Adjust the position to be above the cards */
+    top: -30px;
     width: 100%;
     display: flex;
     justify-content: center;
     z-index: 2;
-    /* Ensure it is above the images */
 }
 
 .indicator {
-    background-color: rgb(255, 249, 75);
-    /* Active indicator color */
+    background-color: transparent;
     height: 0.5rem;
-    /* Set indicator height */
     width: 0.5rem;
-    /* Set indicator width */
     border-radius: 100%;
-    /* Make indicators round */
     border: none;
-    /* Remove button border */
     outline: none;
-    /* Remove button outline */
     box-shadow: 0px 0px 5px #f9f46e;
-    /* Add shadow to indicators */
     margin: 0 0.2rem;
-    /* Space between indicators */
     cursor: pointer;
-    /* Change cursor to pointer on hover */
 }
 
 .indicator-inactive {
-    background-color: grey;
-    /* Inactive indicator color */
+    background-color: transparent;
 }
 
 .counter {
     position: absolute;
-    /* Position absolutely within the carousel container */
-    bottom: 2rem;
-    /* Position above the indicators */
+    top: -15px;
     left: 50%;
-    /* Center horizontally */
     transform: translateX(-50%);
-    /* Adjust for accurate centering */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background */
     color: white;
-    /* White text color */
     padding: 0.5rem 1rem;
-    /* Padding for the counter text */
     border-radius: 0.5rem;
-    /* Rounded corners */
     font-size: 1rem;
-    /* Font size for the counter text */
+    z-index: 2;
+    border: none;
+}
+
+.thankyou-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.play-again-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #efef12;
+    color: #333;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.play-again-button:hover {
+    background-color: #ddd;
 }

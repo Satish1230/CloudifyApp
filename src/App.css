@@ -28,7 +28,7 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.513), rgba(0, 0, 0, 0.539)), url('./images/Background.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.513), rgba(0, 0, 0, 0.513)), url('./images/Background.png');
   animation: zoomInOut 10s infinite;
 }
 

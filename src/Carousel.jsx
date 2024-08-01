@@ -1,53 +1,71 @@
 import React, { useState } from "react";
-import { IoChevronBackCircle, IoChevronForwardCircleSharp } from "react-icons/io5"; // Importing the new icons
+import { Slide, ThankYouCard, Indicators, Arrow } from "./controllers/carousel";
 import "./Carousel.css";
 
-export const Carousel = ({ data }) => {
-    const [slide, setSlide] = useState(0); // State to keep track of the current slide
-    const [showAnswer, setShowAnswer] = useState(false); // State to track if the answer is shown
+export const Carousel = ({ data, thankYouImage }) => {
+    const [slide, setSlide] = useState(0);
+    const [showAnswer, setShowAnswer] = useState(false);
 
     const nextSlide = () => {
-        setSlide(slide === data.length - 1 ? 0 : slide + 1); // Function to go to the next slide
-        setShowAnswer(false); // Reset answer display when changing slide
+        if (slide === data.length) { // Fix off-by-one error
+            setSlide(0);
+        } else {
+            setSlide(slide + 1);
+        }
+        setShowAnswer(false);
+
+        console.log(slide);
     };
 
+
+
     const prevSlide = () => {
-        setSlide(slide === 0 ? data.length - 1 : slide - 1); // Function to go to the previous slide
-        setShowAnswer(false); // Reset answer display when changing slide
+        if (slide > 0) {
+            setSlide(slide - 1);
+        } else {
+            setSlide(data.length - 1); // Optionally loop back to the last slide
+        }
+        setShowAnswer(false);
     };
 
     const handleCardClick = () => {
-        setShowAnswer(!showAnswer); // Toggle answer display on card click
+        setShowAnswer(!showAnswer);
+    };
+
+    const handlePlayAgain = () => {
+        setSlide(0);
+        // setShowAnswer(false); // Ensure the answer is hidden
+        console.log(slide);
     };
 
     return (
-        <div className="carousel-container"> {/* Container for the entire carousel */}
-            <IoChevronBackCircle onClick={prevSlide} className="arrow arrow-left" /> {/* Updated left arrow */}
-            <div className="carousel" onClick={handleCardClick}> {/* Image container */}
-                {data.map((item, idx) => (
-                    <img
-                        src={showAnswer && slide === idx ? item.answerSrc : item.src}
-                        key={idx}
-                        className={slide === idx ? "slide" : "slide slide-hidden"}
-                    />
-                ))}
-                <div className="counter"> {/* Counter display */}
-                    {slide + 1} / {data.length} {/* Current slide number / Total slides */}
-                </div>
+        <div className="carousel-container">
+            <Arrow direction="left" onClick={prevSlide} isDisabled={slide === 0} />
+            <div className="carousel" onClick={handleCardClick} >
+                {slide < data.length ? (
+                    data.map((item, idx) => (
+                        <Slide
+                            key={idx}
+                            src={showAnswer && slide === idx ? item.answerSrc : item.src}
+                            isActive={slide === idx}
+                            showAnswer={showAnswer && slide === idx}
+                        />
+                    ))
+                ) : (
+                    <ThankYouCard onPlayAgain={handlePlayAgain} thankYouImage={thankYouImage} />
+                )}
             </div>
-            <IoChevronForwardCircleSharp onClick={nextSlide} className="arrow arrow-right" /> {/* Updated right arrow */}
-            <span className="indicators"> {/* Container for the indicators */}
-                {data.map((_, idx) => (
-                    <button
-                        key={idx}
-                        className={slide === idx ? "indicator indicator-active" : "indicator indicator-inactive"} // Highlight active indicator
-                        onClick={() => {
-                            setSlide(idx);
-                            setShowAnswer(false); // Reset answer display when changing slide
-                        }}
-                    ></button>
-                ))}
-            </span>
+            {slide < data.length && (
+                <Indicators
+                    slides={data}
+                    currentSlide={slide}
+                    onSelectSlide={(idx) => {
+                        setSlide(idx);
+                        setShowAnswer(false);
+                    }}
+                />
+            )}
+            <Arrow direction="right" onClick={nextSlide} />
         </div>
     );
 };

@@ -1,0 +1,20 @@
+/* Footer.css */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    /* Align content to the left */
+    align-items: center;
+    /* Ensure items are aligned in the center vertically */
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.footer-text {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    /* Add some left margin to align nicely */
+}
